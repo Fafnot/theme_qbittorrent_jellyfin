@@ -1,0 +1,27 @@
+@import url("https://cdn.jsdelivr.net/gh/ahza-code/Netflin@latest/Theme/Netflin.min.css");
+@import url("https://cdn.jsdelivr.net/gh/ahza-code/Netflin@latest/Theme/add-ons/netflin-logo.min.css");
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap');
+
+.card[data-type="CollectionFolder"] .cardText {
+  position: relative;
+  z-index: 3;
+  transform: translate(14px, -78px);
+  font-family: "Oswald", "Arial Narrow", Impact, sans-serif;
+  font-weight: 600;
+  font-size: 2.4em;
+  line-height: 1.1;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: left;
+  text-shadow: 0 2px 8px rgba(0,0,0,.85);
+  overflow: visible;
+}
+.card[data-type="CollectionFolder"] .cardText::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  margin-top: .25em;
+  background: #d11a24;
+}
