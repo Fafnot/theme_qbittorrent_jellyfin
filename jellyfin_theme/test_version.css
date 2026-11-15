@@ -1,0 +1,114 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   verloren / noir for Jellyfin = Netflin layout (ahza-code, GPL-2.0) + cinema-noir look
+   True-black (OLED friendly), hairlines, serif row titles, one violet accent. No blur, so it stays light on TVs and phones.
+   Paste into: Dashboard → General → Custom CSS code
+   Needs Jellyfin 12.x, User Settings → Display → Display Mode: Auto
+   Tip: to freeze the look, replace @latest below with a fixed Netflin version tag
+   ═══════════════════════════════════════════════════════════════════════ */
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap");
+@import url("https://cdn.jsdelivr.net/gh/ahza-code/Netflin@latest/Theme/Netflin.min.css");
+
+/* 1. Palette: black, ink, one violet */
+:root,:root[data-theme]{
+ --serif:"Instrument Serif","Cormorant Garamond",Georgia,"Times New Roman",serif;
+ --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Consolas,monospace;
+ --nf-red:#b79cf9;--nf-red-hover:#9f7ff2;
+ --nf-bg:#08080b;--nf-bg-rgb:8 8 11;--nf-surface:#101015;--nf-surface-2:#16161d;--nf-surface-3:#1e1e28;--nf-surface-4:#2a2a38;
+ --nf-line:rgb(255 255 255 / .08);--nf-outline:rgb(255 255 255 / .4);
+ --nf-text:#ededf2;--nf-text-2:#c4c4d0;--nf-text-dim:#8a8a9c;--nf-text-mute:#5c5c6e;
+ --nf-fill-btn:rgb(255 255 255 / .07);--nf-fill-btn-hover:rgb(255 255 255 / .13);
+ --nf-fill-disc:rgb(8 8 11 / .6);--nf-fill-disc-hover:rgb(30 30 40 / .9);
+ --nf-fill-hover:rgb(255 255 255 / .06);--nf-fill-panel:rgb(255 255 255 / .03);--nf-fill-tag:rgb(183 156 249 / .14);
+ --nf-fill-white-hover:rgb(237 237 242 / .8);--nf-fill-menu:rgb(16 16 21 / .98);
+ --nf-track:rgb(255 255 255 / .16);--nf-scrim:rgb(0 0 0 / .8);
+ --nf-field-bg:rgb(8 8 11 / .7);--nf-field-line:rgb(255 255 255 / .22);--nf-field-line-hover:rgb(255 255 255 / .5);
+ --nf-success:#8fd9a8;--nf-warning:#f0a875;--nf-error:#f0728a;--nf-star:#e6c07b;
+ --nf-focus:2px solid #b79cf9;
+ --nf-radius-xs:1px;--nf-radius:2px;--nf-radius-lg:4px;
+ --nf-font-brand:var(--serif);
+}
+:root,:root[data-theme]{
+ --jf-palette-background-paperChannel:16 16 21;
+ --jf-palette-text-primaryChannel:237 237 242;--jf-palette-text-secondaryChannel:138 138 156;
+ --jf-palette-primary-mainChannel:183 156 249;--jf-palette-secondary-mainChannel:183 156 249;
+ --jf-palette-error-mainChannel:240 114 138;--jf-palette-warning-mainChannel:240 168 117;--jf-palette-success-mainChannel:143 217 168;
+ --jf-palette-info-main:#5c5c6e;--jf-palette-info-mainChannel:92 92 110;
+ --jf-palette-primary-contrastText:#08080b;--jf-palette-secondary-contrastText:#08080b;
+ --jf-palette-action-focus:rgb(183 156 249 / .16);
+}
+body,.skinBody{background:var(--nf-bg)}
+
+/* 2. Brand: italic serif wordmark + icon */
+.MuiAppBar-root :is(.MuiStack-root,.dashboard-appBar)>.MuiButton-root:has(.MuiButton-startIcon>img)::before,
+.MuiDrawer-paper>.MuiBox-root>.MuiList-root:first-child>li:first-child>a::before{
+ content:"verloren";color:var(--nf-text);font:italic 400 1.75rem/2rem var(--serif);letter-spacing:.01em;
+ padding-left:2.5rem;background:url("data:image/jpeg;base64,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") left center/1.9rem 1.9rem no-repeat;border-radius:2px;filter:none}
+
+/* 3. Typography: serif italic row titles, small mono metadata */
+.sectionTitle,.sectionTitle-cards{font-family:var(--serif)!important;font-style:italic;font-weight:400!important;font-size:1.6rem!important;letter-spacing:0;text-transform:none;color:var(--nf-text)!important}
+.mediaInfoItem,.itemMiscInfo,.cardText-secondary,.MuiChip-label{font-family:var(--mono)!important;font-size:.78rem;letter-spacing:.02em;color:var(--nf-text-dim)}
+.MuiTab-root,.MuiAppBar-root .MuiButton-root{text-transform:none!important;letter-spacing:.01em}
+.MuiTab-root{color:var(--nf-text-dim)}
+.MuiTab-root.Mui-selected{color:var(--nf-text)!important}
+.MuiTabs-indicator{background:var(--nf-text)!important;height:1px!important}
+.mediaInfoItem,.MuiChip-root{border-radius:2px!important}
+
+/* 4. Buttons: white plate for Play, hairline outlines for the rest */
+.mainDetailButtons .detailButton{border-radius:2px;border:1px solid var(--nf-line);background:transparent;font-family:var(--mono);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase}
+.mainDetailButtons .detailButton:hover{background:var(--nf-fill-btn-hover);border-color:rgb(255 255 255 / .3)}
+.mainDetailButtons .detailButton.btnPlay{background:var(--nf-text);color:#08080b;border-color:var(--nf-text);font-weight:500}
+.mainDetailButtons .detailButton.btnPlay:hover{background:var(--nf-fill-white-hover);color:#08080b}
+
+/* 5. Cards: sharp, no shadows; posters wake up on hover */
+.cardScalable,.cardImageContainer,.cardBox:not(.visualCardBox) .cardScalable{border-radius:2px}
+.cardImageContainer{transition:filter .25s ease}
+.cardText-first{font-weight:500;color:var(--nf-text)}
+.card:focus-within .cardScalable{outline:1px solid var(--nf-text);outline-offset:2px}
+
+/* 6. Progress: one hairline in violet */
+.itemProgressBar,.MuiLinearProgress-root{height:2px!important;border-radius:0!important;background:var(--nf-track)!important}
+.itemProgressBar>div,.MuiLinearProgress-root .MuiLinearProgress-bar{background:var(--nf-red)!important}
+
+/* 7. Menus, dialogs, inputs: solid ink, hairline borders, zero blur */
+.MuiPopover-paper,.MuiMenu-paper,.dialog,.actionSheet,.MuiPaper-root{background:var(--nf-surface)!important;border:1px solid var(--nf-line);border-radius:4px!important;box-shadow:0 20px 50px rgb(0 0 0 / .7)}
+.MuiMenuItem-root,.MuiListItemButton-root{border-radius:0!important}
+.MuiMenuItem-root:hover,.MuiListItemButton-root:hover{background:var(--nf-fill-hover)!important}
+.MuiMenuItem-root.Mui-selected,.MuiListItemButton-root.Mui-selected{background:var(--nf-fill-btn)!important;box-shadow:inset 2px 0 var(--nf-red)}
+.MuiInputBase-root,.MuiFilledInput-root,.emby-input,.emby-select{border-radius:2px!important}
+::selection{background:rgb(183 156 249 / .4)}
+*{scrollbar-color:var(--nf-surface-4) transparent;scrollbar-width:thin}
+:focus-visible{outline:2px solid var(--nf-red);outline-offset:2px}
+
+/* 8. Netflin's red glows to violet */
+.tvguide .programCell.programCell-active,.tvguide .programCell.programCell-active:focus{background:linear-gradient(90deg,rgb(183 156 249 / .2),rgb(183 156 249 / 0) 18rem),#1e1e28!important}
+.tvguide .programCell.programCell-active:hover{background:linear-gradient(90deg,rgb(183 156 249 / .28),rgb(183 156 249 / 0) 18rem),#272735!important}
+#loginPage{background:radial-gradient(60rem 30rem at 50% -12%,rgb(183 156 249 / .12),transparent 70%),var(--nf-bg)}
+
+/* 9. Desktop (mouse): slight lift, brighter hairline border */
+@media (hover:hover) and (pointer:fine){
+ .card:hover .cardBox{transform:translateY(-3px)}
+ .card:hover .cardScalable{outline:1px solid rgb(255 255 255 / .55);outline-offset:-1px}
+ .cardBox{transition:transform .2s ease}
+}
+
+/* 10. Phone / touch */
+@media (hover:none),(max-width:640px){
+ .emby-button,.paper-icon-button-light,.MuiIconButton-root,.MuiListItemButton-root,.MuiMenuItem-root{min-height:44px;min-width:44px}
+ .padded-left{padding-left:max(1em,env(safe-area-inset-left))}
+ .padded-right{padding-right:max(1em,env(safe-area-inset-right))}
+ .MuiAppBar-root{padding-top:env(safe-area-inset-top)}
+ .dialog,.actionSheet{max-height:92vh}
+ .sectionTitle,.sectionTitle-cards{font-size:1.3rem!important}
+}
+@media (max-width:640px){.itemMiscInfo,.mediaInfoItem{font-size:.74rem}}
+
+/* 11. TV (remote): thick ring, scale on focus, overscan-safe margins */
+.layout-tv :focus,.layout-tv :focus-visible{outline:3px solid var(--nf-red)!important;outline-offset:3px!important}
+.layout-tv .card:focus .cardBox,.layout-tv .card:focus-within .cardBox{transform:scale(1.06);z-index:5;transition:transform .15s ease}
+.layout-tv .card:focus .cardScalable,.layout-tv .card:focus-within .cardScalable{box-shadow:0 0 0 3px var(--nf-red),0 18px 46px rgb(0 0 0 / .7);outline:0!important}
+.layout-tv .emby-button:focus,.layout-tv .MuiButton-root:focus,.layout-tv .MuiListItemButton-root:focus,.layout-tv .MuiMenuItem-root:focus{background:var(--nf-surface-3)!important;color:var(--nf-text)!important}
+.layout-tv .padded-left{padding-left:4%!important}
+.layout-tv .padded-right{padding-right:4%!important}
+.layout-tv .sectionTitle,.layout-tv .sectionTitle-cards{font-size:1.9rem!important}
+.layout-tv *{scrollbar-width:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation-duration:.01ms!important}}
