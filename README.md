@@ -10,7 +10,7 @@ qbittorrent будет работать точно на версий 5.1.4</h3>
 
 <h2 align="center">Jellyfin объяснение</h2>
 <h3>Jellyfin работает точно на телефоне и на пк вот на телевизор плохо пока что</h3>
-<h4>netflin_jellyfin.css взято за основу с этого проекта https://github.com/ahza-code/Netflin и немного переделан он не основной стиль</h4>
+<h4>netflin_jellyfin.css взято за основу с этого проекта https://github.com/ahza-code/Netflin немного переделан только вот он мой не основной стиль</h4>
 
 <h4>verloren_theme_jellyfin.css взят за основу тоже проект https://github.com/ahza-code/Netflin но уже стиль был как в этом проекте https://github.com/diogochaves/omaseed очень было интересно их совместит вышло не плохо</h4>
 
