@@ -4,68 +4,97 @@
 [![qBittorrent 5.1.4+](https://img.shields.io/badge/qBittorrent-5.1.4%2B-2f67ba?logo=qbittorrent&logoColor=white)](https://www.qbittorrent.org)
 [![Support: Claude](https://img.shields.io/badge/Support-Claude-d97757?logo=claude&logoColor=white)](https://claude.ai)
 
-<h3>Проект больше для сервероной части что бы интерфейс выгледил лучшее дефолтного,
-jellyfin точно будет работать на версий 12.4,
-qbittorrent будет работать точно на версий 5.1.4</h3>
+Проект в основном для серверной части: чтобы интерфейс выглядел лучше стандартного.
 
-<h2 align="center">Jellyfin объяснение</h2>
-<h3>Jellyfin работает точно на телефоне и на пк вот на телевизор плохо пока что</h3>
-<h4>netflin_jellyfin.css взято за основу с этого проекта https://github.com/ahza-code/Netflin немного переделан только вот он мой не основной стиль</h4>
+- Jellyfin точно работает на версии 12.4.
+- qBittorrent точно работает на версии 5.1.4.
 
-<h4>verloren_theme_jellyfin.css взят за основу тоже проект https://github.com/ahza-code/Netflin но уже стиль был как в этом проекте https://github.com/diogochaves/omaseed очень было интересно их совместит вышло не плохо</h4>
+<h2 align="center">Jellyfin</h2>
 
-<h4>Что бы в jellyfin пременить мой стили надо просто скопировать что в css файлах в папке jellyfin_theme дальше надо зайти в панель управление есть оформление и туда просто вставляем мой css код в Настраиваемый CSS-код </h4>
-<h3>ВСЕ ГОТОВО</h3>
+Тема точно работает на телефоне и на ПК. На телевизоре пока работает плохо.
 
-<h2 align="center"> qBittorrent объяснение</h2>
-<h3>Стиль для проекта подобрать помог другой проект https://github.com/diogochaves/omaseed и было создано</h3>
-<h4>Что бы использовать его надо создать папку где вам удобно запомнить путь в эту папку закинуть все файлы с папки qbittorrent_theme после зайти на свой docker контейнер и в volume добавит путь</h4>
-<h4>Пример вот - /srv/dev-disk-by-uuid-e430d7b8-ab9e-4de3-9b22-95d9a895d5e7/toshiba_1tb/jellyfin/verloren:/config/verloren:ro мой путь тут /srv/dev-disk-by-uuid-e430d7b8-ab9e-4de3-9b22-95d9a895d5e7/toshiba_1tb/jellyfin/verloren и после него надо будет добавить всего :config/verloren:ro что бы в qbittorrent патом появился папка verloren </h4>
-<h4>После этого надо перезапустить контейнер docker compose up -d и после зайти на qbittorrent</h4>
-<h4>Настройки после в окне WebUI есть поле use alternative webui включаем патом просто вводим туда папку /verloren нажымаем save и все перезагружаем страницу</h4>
-<h3>ВСЕ ГОТОВО</h3>
+- `netflin_jellyfin.css` взят за основу из проекта [Netflin](https://github.com/ahza-code/Netflin) и немного переделан. Это не мой основной стиль.
+- `verloren_theme_jellyfin.css` тоже сделан на основе [Netflin](https://github.com/ahza-code/Netflin), но стиль взят из проекта [omaseed](https://github.com/diogochaves/omaseed). Было интересно их совместить, и получилось неплохо.
+
+### Установка
+
+1. Скопируйте содержимое нужного CSS-файла из папки `jellyfin_theme`.
+2. Зайдите в панель управления Jellyfin, раздел «Оформление».
+3. Вставьте код в поле «Настраиваемый CSS-код» и сохраните.
+
+**Всё готово!**
+
+<h2 align="center">qBittorrent</h2>
+
+Стиль создан с помощью проекта [omaseed](https://github.com/diogochaves/omaseed).
+
+### Установка
+
+1. Создайте в удобном месте папку и запомните путь к ней.
+2. Положите в неё все файлы из папки `qbittorrent_theme`.
+3. Добавьте эту папку в `volumes` вашего Docker-контейнера qBittorrent. Формат: `путь_на_сервере:путь_в_контейнере:ro`.
+
+   Пример:
+
+   ```yaml
+   volumes:
+     - /srv/dev-disk-by-uuid-e430d7b8-ab9e-4de3-9b22-95d9a895d5e7/toshiba_1tb/qbittorrent/verloren:/config/verloren:ro
+   ```
+
+   Здесь `/srv/.../qbittorrent/verloren` — путь на сервере, а `/config/verloren` — путь внутри контейнера (в qBittorrent появится папка `verloren`).
+
+4. Перезапустите контейнер:
+
+   ```bash
+   docker compose up -d
+   ```
+
+5. Откройте qBittorrent: Настройки → вкладка **WebUI** → включите **Use alternative WebUI**.
+6. В поле пути укажите `/config/verloren`, нажмите **Save** и перезагрузите страницу.
+
+**Всё готово!**
 
 <h2 align="center">PREVIEW</h2>
+
 <details>
-  <summary><h3>theme verloren jellyfin PC version</h3></summary>
+  <summary><h3>Jellyfin theme verloren: PC version</h3></summary>
   <p>
-  <img src="img/jellyfin_theme_verloren/1_login.png" style="width: 900px">
-  <img src="img/jellyfin_theme_verloren/2_main_window.png" style="width: 900px">
-  <img src="img/jellyfin_theme_verloren/3_main_windows_next.png" style="width: 900px">
-  <img src="img/jellyfin_theme_verloren/4_film_all.png" style="width: 900px">
-  <img src="img/jellyfin_theme_verloren/5_film_main_window.png" style="width: 900px"> 
-  <img src="img/jellyfin_theme_verloren/6_film_main_windows_description.png" style="width: 900px">
-  <img src="img/jellyfin_theme_verloren/7_music.png" style="width: 900px">
-  <img src="img/jellyfin_theme_verloren/8_album.png" style="width: 900px">
-  <img src="img/jellyfin_theme_verloren/9_people.png" style="width: 900px">
-  <img src="img/jellyfin_theme_verloren/10_player.png" style="width: 900px">
-  <img src="img/jellyfin_theme_verloren/11_seasion.png" style="width: 900px">
-  <img src="img/jellyfin_theme_verloren/12_episodes.png" style="width: 900px">
-  </p>
-  <details>
-  <summary><h3>Phone version</h3></summary>
-  <p>
-  <img src="img/jellyfin_theme_verloren/phone/1_main_window.jpeg" style="width: 400px">
-  <img src="img/jellyfin_theme_verloren/phone/2_main_window_next.jpeg" style="width: 400px">
-  <img src="img/jellyfin_theme_verloren/phone/3_film_main.jpeg" style="width: 400px">
-  <img src="img/jellyfin_theme_verloren/phone/4_music_album.jpeg" style="width: 400px">
-  <img src="img/jellyfin_theme_verloren/phone/5_album.jpeg" style="width: 400px">
-  <img src="img/jellyfin_theme_verloren/phone/6_player.jpeg" style="width: 400px">
-  <img src="img/jellyfin_theme_verloren/phone/7_film_main_window.jpeg" style="width: 400px">
-  <img src="img/jellyfin_theme_verloren/phone/8_people.jpeg" style="width: 400px">
-  <img src="img/jellyfin_theme_verloren/phone/9_season.jpeg" style="width: 400px">
-  <img src="img/jellyfin_theme_verloren/phone/10_episodes.jpeg" style="width: 400px">
-  </p>
-</details>
-</details>
-
-  <details>
-  <summary><h3>qbittorrent theme</h3></summary>
-  <p>
-  <img src="img/qbittorrent_theme/image copy 2.png" style="width: 900px">
-  <img src="img/qbittorrent_theme/image copy.png" style="width: 900px">
-  <img src="img/qbittorrent_theme/image.png" style="width: 900px">
+  <img src="img/jellyfin_theme_verloren/1_login.png" width="900">
+  <img src="img/jellyfin_theme_verloren/2_main_window.png" width="900">
+  <img src="img/jellyfin_theme_verloren/3_main_windows_next.png" width="900">
+  <img src="img/jellyfin_theme_verloren/4_film_all.png" width="900">
+  <img src="img/jellyfin_theme_verloren/5_film_main_window.png" width="900">
+  <img src="img/jellyfin_theme_verloren/6_film_main_windows_description.png" width="900">
+  <img src="img/jellyfin_theme_verloren/7_music.png" width="900">
+  <img src="img/jellyfin_theme_verloren/8_album.png" width="900">
+  <img src="img/jellyfin_theme_verloren/9_people.png" width="900">
+  <img src="img/jellyfin_theme_verloren/10_player.png" width="900">
+  <img src="img/jellyfin_theme_verloren/11_seasion.png" width="900">
+  <img src="img/jellyfin_theme_verloren/12_episodes.png" width="900">
   </p>
 </details>
 
+<details>
+  <summary><h3>Jellyfin theme verloren: Phone version</h3></summary>
+  <p>
+  <img src="img/jellyfin_theme_verloren/phone/1_main_window.jpeg" width="400">
+  <img src="img/jellyfin_theme_verloren/phone/2_main_window_next.jpeg" width="400">
+  <img src="img/jellyfin_theme_verloren/phone/3_film_main.jpeg" width="400">
+  <img src="img/jellyfin_theme_verloren/phone/4_music_album.jpeg" width="400">
+  <img src="img/jellyfin_theme_verloren/phone/5_album.jpeg" width="400">
+  <img src="img/jellyfin_theme_verloren/phone/6_player.jpeg" width="400">
+  <img src="img/jellyfin_theme_verloren/phone/7_film_main_window.jpeg" width="400">
+  <img src="img/jellyfin_theme_verloren/phone/8_people.jpeg" width="400">
+  <img src="img/jellyfin_theme_verloren/phone/9_season.jpeg" width="400">
+  <img src="img/jellyfin_theme_verloren/phone/10_episodes.jpeg" width="400">
+  </p>
+</details>
 
+<details>
+  <summary><h3>qBittorrent theme</h3></summary>
+  <p>
+  <img src="img/qbittorrent_theme/image%20copy%202.png" width="900">
+  <img src="img/qbittorrent_theme/image%20copy.png" width="900">
+  <img src="img/qbittorrent_theme/image.png" width="900">
+  </p>
+</details>
