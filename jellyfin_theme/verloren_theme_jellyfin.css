@@ -1,7 +1,8 @@
 /* ═══════════════════════════════════════════════════════════════════════
-   verloren for Jellyfin = Netflin layout (ahza-code, GPL-2.0) + omaseed look
+   verloren v2 for Jellyfin = Netflin layout (ahza-code, GPL-2.0) + omaseed look, tuned for phone / desktop / TV
    Paste this whole file into: Dashboard → General → Custom CSS code
    Needs Jellyfin 12.x, User Settings → Display → Display Mode: Auto
+   Tip: to freeze the look, replace @latest below with a fixed Netflin version tag
    ═══════════════════════════════════════════════════════════════════════ */
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap");
 @import url("https://cdn.jsdelivr.net/gh/ahza-code/Netflin@latest/Theme/Netflin.min.css");
@@ -76,3 +77,46 @@ body,.skinBody{background:var(--nf-bg)}
 .tvguide .programCell.programCell-active,.tvguide .programCell.programCell-active:focus{background:linear-gradient(90deg,rgb(187 154 247 / .2),rgb(187 154 247 / 0) 18rem),#292e42!important}
 .tvguide .programCell.programCell-active:hover{background:linear-gradient(90deg,rgb(187 154 247 / .26),rgb(187 154 247 / 0) 18rem),#33395a!important}
 #loginPage{background:radial-gradient(70rem 40rem at 50% -10%,rgb(187 154 247 / .16),transparent 70%),var(--nf-bg)}
+
+/* ═══════════ v2 additions ═══════════ */
+
+/* 9. Polish: accent bar on row titles, softer lift and glow on cards, frosted menus */
+.sectionTitle,.sectionTitle-cards{border-left:2px solid var(--nf-red);padding-left:.7rem}
+/* block-level row titles keep Jellyfin's own left indent, so the bar is drawn next to the text, not at the screen edge */
+h2.sectionTitle.padded-left,h2.sectionTitle-cards.padded-left{border-left:0;
+ background:linear-gradient(var(--nf-red),var(--nf-red)) -.8rem 50%/2px 1em no-repeat;background-origin:content-box;background-clip:border-box}
+.cardBox{transition:transform .22s cubic-bezier(.2,.7,.2,1)}
+.cardScalable{transition:box-shadow .22s ease}
+.MuiPopover-paper,.MuiMenu-paper,.dialog,.actionSheet{backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2)}
+:focus-visible{outline:2px solid var(--nf-red);outline-offset:2px}
+/* cut corners must not clip the keyboard focus ring */
+.mainDetailButtons .detailButton:focus-visible{clip-path:none}
+
+/* 10. Desktop (mouse only) */
+@media (hover:hover) and (pointer:fine){
+ .card:hover .cardBox{transform:translateY(-3px)}
+ .card:hover .cardScalable{box-shadow:0 14px 34px rgb(0 0 0 / .55),0 0 22px rgb(187 154 247 / .18)}
+}
+
+/* 11. Phone / touch: big tap targets, no hover effects, notch-safe */
+@media (hover:none),(max-width:640px){
+ .emby-button,.paper-icon-button-light,.MuiIconButton-root,.MuiListItemButton-root,.MuiMenuItem-root{min-height:44px;min-width:44px}
+ .cardBox,.cardScalable{transition:none}
+ .sectionTitle,.sectionTitle-cards{font-size:.76rem!important;padding-left:.55rem}
+ .padded-left{padding-left:max(1em,env(safe-area-inset-left))}
+ .padded-right{padding-right:max(1em,env(safe-area-inset-right))}
+ .MuiAppBar-root{padding-top:env(safe-area-inset-top)}
+ .dialog,.actionSheet{max-height:92vh}
+}
+@media (max-width:640px){.itemMiscInfo,.mediaInfoItem{font-size:.8rem}}
+
+/* 12. TV (remote control): thick focus ring, scale on focus, overscan-safe margins */
+.layout-tv :focus,.layout-tv :focus-visible{outline:3px solid var(--nf-red)!important;outline-offset:3px!important}
+.layout-tv .card:focus .cardBox,.layout-tv .card:focus-within .cardBox{transform:scale(1.06);z-index:5}
+.layout-tv .card:focus .cardScalable,.layout-tv .card:focus-within .cardScalable{box-shadow:0 0 0 3px var(--nf-red),0 18px 46px rgb(0 0 0 / .65);outline:0!important}
+.layout-tv .emby-button:focus,.layout-tv .MuiButton-root:focus,.layout-tv .MuiListItemButton-root:focus,.layout-tv .MuiMenuItem-root:focus{background:var(--nf-surface-3)!important;color:var(--nf-text)!important}
+.layout-tv .mainDetailButtons .detailButton{clip-path:none}
+.layout-tv .padded-left{padding-left:4%!important}
+.layout-tv .padded-right{padding-right:4%!important}
+.layout-tv *{scrollbar-width:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation-duration:.01ms!important}}
