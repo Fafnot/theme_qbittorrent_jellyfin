@@ -1,8 +1,10 @@
 /* ═══════════════════════════════════════════════════════════════════════
-   verloren v2 for Jellyfin = Netflin layout (ahza-code, GPL-2.0) + omaseed look, tuned for phone / desktop / TV
+   verloren v2.1 for Jellyfin = Netflin layout (ahza-code, GPL-2.0) + omaseed look, tuned for phone / desktop / TV
    Paste this whole file into: Dashboard → General → Custom CSS code
-   Needs Jellyfin 12.x, User Settings → Display → Display Mode: Auto
+   Needs Jellyfin 12.x, User Settings → Display → Display Mode: Auto (or TV on a television)
    Tip: to freeze the look, replace @latest below with a fixed Netflin version tag
+   v2.1: TV fixes (no blur, room for scaled cards, bigger text), phone rules scoped to .layout-mobile,
+         rgb(a b c / x) replaced with rgba() for old TV browsers
    ═══════════════════════════════════════════════════════════════════════ */
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap");
 @import url("https://cdn.jsdelivr.net/gh/ahza-code/Netflin@latest/Theme/Netflin.min.css");
@@ -10,16 +12,17 @@
 /* 1. Palette: Tokyo Night base, violet accent from the verloren icon */
 :root,:root[data-theme]{
  --vmono:"JetBrains Mono","Share Tech Mono",ui-monospace,SFMono-Regular,Consolas,monospace;
+ --vlogo:url("data:image/jpeg;base64,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");
  --nf-red:#bb9af7;--nf-red-hover:#9d7cd8;
  --nf-bg:#15161e;--nf-bg-rgb:21 22 30;--nf-surface:#1a1b26;--nf-surface-2:#1f2335;--nf-surface-3:#292e42;--nf-surface-4:#3b4261;
- --nf-line:rgb(192 202 245 / .09);--nf-outline:rgb(192 202 245 / .45);
+ --nf-line:rgba(192,202,245,.09);--nf-outline:rgba(192,202,245,.45);
  --nf-text:#c0caf5;--nf-text-2:#a9b1d6;--nf-text-dim:#787c99;--nf-text-mute:#565f89;
- --nf-fill-btn:rgb(41 46 66 / .85);--nf-fill-btn-hover:rgb(59 66 97 / .85);
- --nf-fill-disc:rgb(26 27 38 / .7);--nf-fill-disc-hover:rgb(41 46 66 / .9);
- --nf-fill-hover:rgb(192 202 245 / .07);--nf-fill-panel:rgb(192 202 245 / .035);--nf-fill-tag:rgb(187 154 247 / .14);
- --nf-fill-white-hover:rgb(192 202 245 / .78);--nf-fill-menu:rgb(26 27 38 / .97);
- --nf-track:rgb(86 95 137 / .5);--nf-scrim:rgb(10 10 16 / .75);
- --nf-field-bg:rgb(22 22 30 / .8);--nf-field-line:rgb(86 95 137 / .8);--nf-field-line-hover:rgb(192 202 245 / .6);
+ --nf-fill-btn:rgba(41,46,66,.85);--nf-fill-btn-hover:rgba(59,66,97,.85);
+ --nf-fill-disc:rgba(26,27,38,.7);--nf-fill-disc-hover:rgba(41,46,66,.9);
+ --nf-fill-hover:rgba(192,202,245,.07);--nf-fill-panel:rgba(192,202,245,.035);--nf-fill-tag:rgba(187,154,247,.14);
+ --nf-fill-white-hover:rgba(192,202,245,.78);--nf-fill-menu:rgba(26,27,38,.97);
+ --nf-track:rgba(86,95,137,.5);--nf-scrim:rgba(10,10,16,.75);
+ --nf-field-bg:rgba(22,22,30,.8);--nf-field-line:rgba(86,95,137,.8);--nf-field-line-hover:rgba(192,202,245,.6);
  --nf-success:#9ece6a;--nf-warning:#ff9e64;--nf-error:#f7768e;--nf-star:#e0af68;
  --nf-focus:2px solid #bb9af7;
  --nf-radius-xs:2px;--nf-radius:3px;--nf-radius-lg:4px;
@@ -32,16 +35,21 @@
  --jf-palette-error-mainChannel:247 118 142;--jf-palette-warning-mainChannel:255 158 100;--jf-palette-success-mainChannel:158 206 106;
  --jf-palette-info-main:#565f89;--jf-palette-info-mainChannel:86 95 137;
  --jf-palette-primary-contrastText:#15161e;--jf-palette-secondary-contrastText:#15161e;
- --jf-palette-action-focus:rgb(187 154 247 / .16);
+ --jf-palette-action-focus:rgba(187,154,247,.16);
 }
 body,.skinBody{background:var(--nf-bg)}
 
-/* 2. Brand: "verloren" with the icon instead of the red JELLYFIN word */
-.MuiAppBar-root :is(.MuiStack-root,.dashboard-appBar)>.MuiButton-root:has(.MuiButton-startIcon>img)::before,
+/* 2. Brand: "verloren" with the icon instead of the red JELLYFIN word
+      (three separate rules: an old browser that does not know :has() skips only the first two, not the drawer one) */
+.MuiAppBar-root .MuiStack-root>.MuiButton-root:has(.MuiButton-startIcon>img)::before{
+ content:"verloren";color:var(--nf-text);font:700 1.3rem/1.9rem var(--vmono);letter-spacing:.02em;
+ padding-left:2.4rem;background:var(--vlogo) left center/1.9rem 1.9rem no-repeat;filter:none;border-radius:3px}
+.MuiAppBar-root .dashboard-appBar>.MuiButton-root:has(.MuiButton-startIcon>img)::before{
+ content:"verloren";color:var(--nf-text);font:700 1.3rem/1.9rem var(--vmono);letter-spacing:.02em;
+ padding-left:2.4rem;background:var(--vlogo) left center/1.9rem 1.9rem no-repeat;filter:none;border-radius:3px}
 .MuiDrawer-paper>.MuiBox-root>.MuiList-root:first-child>li:first-child>a::before{
  content:"verloren";color:var(--nf-text);font:700 1.3rem/1.9rem var(--vmono);letter-spacing:.02em;
- padding-left:2.4rem;background:url("data:image/jpeg;base64,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") left center/1.9rem 1.9rem no-repeat;
- filter:none;border-radius:3px}
+ padding-left:2.4rem;background:var(--vlogo) left center/1.9rem 1.9rem no-repeat;filter:none;border-radius:3px}
 
 /* 3. Console touches: mono labels, tracked uppercase section titles, thin lines */
 .sectionTitle,.sectionTitle-cards{font-family:var(--vmono)!important;font-size:.82rem!important;font-weight:500!important;letter-spacing:.16em;text-transform:uppercase;color:var(--nf-text-dim)!important}
@@ -58,7 +66,7 @@ body,.skinBody{background:var(--nf-bg)}
 
 /* 5. Cards: flat, thin outline with the violet accent on hover */
 .cardScalable,.cardBox:not(.visualCardBox) .cardScalable{border-radius:3px}
-.card:hover .cardScalable,.card:focus-within .cardScalable{outline:1px solid rgb(187 154 247 / .8);outline-offset:-1px}
+.card:hover .cardScalable,.card:focus-within .cardScalable{outline:1px solid rgba(187,154,247,.8);outline-offset:-1px}
 .cardText-first{font-weight:500}
 
 /* 6. Progress: thin lines like omaseed's table */
@@ -70,13 +78,13 @@ body,.skinBody{background:var(--nf-bg)}
 .MuiMenuItem-root:hover,.MuiListItemButton-root:hover{background:var(--nf-fill-hover)!important}
 .MuiMenuItem-root.Mui-selected,.MuiListItemButton-root.Mui-selected{background:var(--nf-surface-3)!important;box-shadow:inset 2px 0 var(--nf-red)}
 .MuiInputBase-root,.MuiFilledInput-root,.emby-input,.emby-select{border-radius:2px!important}
-::selection{background:rgb(187 154 247 / .35)}
-*{scrollbar-color:var(--nf-surface-3) transparent;scrollbar-width:thin}
+::selection{background:rgba(187,154,247,.35)}
+html{scrollbar-color:var(--nf-surface-3) transparent;scrollbar-width:thin}
 
 /* 8. Netflin's hard-coded red glows to violet */
-.tvguide .programCell.programCell-active,.tvguide .programCell.programCell-active:focus{background:linear-gradient(90deg,rgb(187 154 247 / .2),rgb(187 154 247 / 0) 18rem),#292e42!important}
-.tvguide .programCell.programCell-active:hover{background:linear-gradient(90deg,rgb(187 154 247 / .26),rgb(187 154 247 / 0) 18rem),#33395a!important}
-#loginPage{background:radial-gradient(70rem 40rem at 50% -10%,rgb(187 154 247 / .16),transparent 70%),var(--nf-bg)}
+.tvguide .programCell.programCell-active,.tvguide .programCell.programCell-active:focus{background:linear-gradient(90deg,rgba(187,154,247,.2),rgba(187,154,247,0) 18rem),#292e42!important}
+.tvguide .programCell.programCell-active:hover{background:linear-gradient(90deg,rgba(187,154,247,.26),rgba(187,154,247,0) 18rem),#33395a!important}
+#loginPage{background:radial-gradient(70rem 40rem at 50% -10%,rgba(187,154,247,.16),transparent 70%),var(--nf-bg)}
 
 /* ═══════════ v2 additions ═══════════ */
 
@@ -95,28 +103,48 @@ h2.sectionTitle.padded-left,h2.sectionTitle-cards.padded-left{border-left:0;
 /* 10. Desktop (mouse only) */
 @media (hover:hover) and (pointer:fine){
  .card:hover .cardBox{transform:translateY(-3px)}
- .card:hover .cardScalable{box-shadow:0 14px 34px rgb(0 0 0 / .55),0 0 22px rgb(187 154 247 / .18)}
+ .card:hover .cardScalable{box-shadow:0 14px 34px rgba(0,0,0,.55),0 0 22px rgba(187,154,247,.18)}
 }
 
-/* 11. Phone / touch: big tap targets, no hover effects, notch-safe */
-@media (hover:none),(max-width:640px){
- .emby-button,.paper-icon-button-light,.MuiIconButton-root,.MuiListItemButton-root,.MuiMenuItem-root{min-height:44px;min-width:44px}
- .cardBox,.cardScalable{transition:none}
- .sectionTitle,.sectionTitle-cards{font-size:.76rem!important;padding-left:.55rem}
- .padded-left{padding-left:max(1em,env(safe-area-inset-left))}
- .padded-right{padding-right:max(1em,env(safe-area-inset-right))}
- .MuiAppBar-root{padding-top:env(safe-area-inset-top)}
- .dialog,.actionSheet{max-height:92vh}
+/* 11. Phone / touch (scoped to .layout-mobile so a TV never picks these up) */
+.layout-mobile .emby-button,.layout-mobile .paper-icon-button-light,.layout-mobile .MuiIconButton-root,
+.layout-mobile .MuiListItemButton-root,.layout-mobile .MuiMenuItem-root{min-height:44px;min-width:44px}
+.layout-mobile .cardBox,.layout-mobile .cardScalable{transition:none}
+.layout-mobile .sectionTitle,.layout-mobile .sectionTitle-cards{font-size:.76rem!important;padding-left:.55rem}
+.layout-mobile .padded-left{padding-left:max(1em,env(safe-area-inset-left))}
+.layout-mobile .padded-right{padding-right:max(1em,env(safe-area-inset-right))}
+.layout-mobile .MuiAppBar-root{padding-top:env(safe-area-inset-top)}
+.layout-mobile .dialog,.layout-mobile .actionSheet{max-height:92vh}
+@media (max-width:640px){
+ html:not(.layout-tv) .itemMiscInfo,html:not(.layout-tv) .mediaInfoItem{font-size:.8rem}
 }
-@media (max-width:640px){.itemMiscInfo,.mediaInfoItem{font-size:.8rem}}
 
-/* 12. TV (remote control): thick focus ring, scale on focus, overscan-safe margins */
+/* 12. TV (remote control): thick focus ring, scale on focus, overscan-safe margins,
+       no blur / heavy shadows (weak TV GPUs), room around scaled cards, bigger text */
 .layout-tv :focus,.layout-tv :focus-visible{outline:3px solid var(--nf-red)!important;outline-offset:3px!important}
-.layout-tv .card:focus .cardBox,.layout-tv .card:focus-within .cardBox{transform:scale(1.06);z-index:5}
-.layout-tv .card:focus .cardScalable,.layout-tv .card:focus-within .cardScalable{box-shadow:0 0 0 3px var(--nf-red),0 18px 46px rgb(0 0 0 / .65);outline:0!important}
+
+/* flat menus and dialogs instead of backdrop blur */
+.layout-tv .MuiPopover-paper,.layout-tv .MuiMenu-paper,.layout-tv .dialog,.layout-tv .actionSheet{
+ backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:var(--nf-surface)!important}
+
+/* cheap focus animation: only transform, thin ring instead of a big blurred shadow */
+.layout-tv .cardBox{transition:transform .15s ease-out}
+.layout-tv .cardScalable{transition:none}
+.layout-tv .card:focus .cardBox,.layout-tv .card:focus-within .cardBox{transform:scale(1.05);z-index:5}
+.layout-tv .card:focus .cardScalable,.layout-tv .card:focus-within .cardScalable{box-shadow:0 0 0 3px var(--nf-red);outline:0!important}
+
+/* room so the scaled card is not cut off by the row's overflow */
+.layout-tv .emby-scroller,.layout-tv .scrollSlider,.layout-tv .itemsContainer{padding-top:.9em;padding-bottom:.9em}
+.layout-tv .scrollSlider{padding-left:.6em;padding-right:.6em}
+
+/* readable from the couch */
+.layout-tv .sectionTitle,.layout-tv .sectionTitle-cards{font-size:1.15rem!important;letter-spacing:.1em;padding-left:.8rem}
+.layout-tv .cardText-first{font-size:1.05rem}
+.layout-tv .cardText-secondary,.layout-tv .itemMiscInfo,.layout-tv .mediaInfoItem{font-size:.95rem}
+
 .layout-tv .emby-button:focus,.layout-tv .MuiButton-root:focus,.layout-tv .MuiListItemButton-root:focus,.layout-tv .MuiMenuItem-root:focus{background:var(--nf-surface-3)!important;color:var(--nf-text)!important}
 .layout-tv .mainDetailButtons .detailButton{clip-path:none}
-.layout-tv .padded-left{padding-left:4%!important}
-.layout-tv .padded-right{padding-right:4%!important}
-.layout-tv *{scrollbar-width:none}
+/* NOTE: no .padded-left / .padded-right overrides on TV: on the item page they push the title under the poster */
+.layout-tv ::-webkit-scrollbar{display:none}
+
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation-duration:.01ms!important}}
