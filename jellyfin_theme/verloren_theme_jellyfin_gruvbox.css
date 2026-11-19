@@ -1,0 +1,182 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   verloren v2.2 «Neovim» for Jellyfin = Netflin (ahza-code, GPL-2.0)
+   Gruvbox-inspired: dark graphite, olive accents, mono, sharp corners.
+   ═══════════════════════════════════════════════════════════════════════ */
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap");
+@import url("https://cdn.jsdelivr.net/gh/ahza-code/Netflin@latest/Theme/Netflin.min.css");
+
+/* 1. Palette: Gruvbox dark, olive accent */
+:root,:root[data-theme]{
+ --vmono:"JetBrains Mono","Share Tech Mono",ui-monospace,SFMono-Regular,Consolas,monospace;
+ --vlogo:url("data:image/jpeg;base64,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");
+ 
+ /* Gruvbox Dark Palette */
+ --nf-red:#b8bb26; /* Оливково-жёлтый акцент */
+ --nf-red-hover:#d79921; /* Более насыщенный горчичный при наведении */
+ 
+ --nf-bg:#1d2021; /* Очень тёмный графит */
+ --nf-bg-rgb:29 32 33;
+ --nf-surface:#282828; /* Фон меню */
+ --nf-surface-2:#32302f;
+ --nf-surface-3:#3c3836;
+ --nf-surface-4:#504945;
+ 
+ --nf-line:rgba(235,219,178,.09); /* Светло-песочные линии */
+ --nf-outline:rgba(235,219,178,.45);
+ --nf-text:#ebdbb2; /* Тёплый белый (песочный) */
+ --nf-text-2:#d5c4a1;
+ --nf-text-dim:#928374; /* Приглушённый серый */
+ --nf-text-mute:#665c54;
+ 
+ --nf-fill-btn:rgba(60,56,54,.85);
+ --nf-fill-btn-hover:rgba(80,73,69,.85);
+ --nf-fill-disc:rgba(40,40,40,.7);
+ --nf-fill-disc-hover:rgba(60,56,54,.9);
+ --nf-fill-hover:rgba(235,219,178,.07);
+ --nf-fill-panel:rgba(235,219,178,.035);
+ --nf-fill-tag:rgba(184,187,38,.14);
+ --nf-fill-white-hover:rgba(235,219,178,.78);
+ --nf-fill-menu:rgba(40,40,40,.97);
+ 
+ --nf-track:rgba(102,92,84,.5);
+ --nf-scrim:rgba(20,20,20,.75);
+ --nf-field-bg:rgba(29,32,33,.8);
+ --nf-field-line:rgba(102,92,84,.8);
+ --nf-field-line-hover:rgba(235,219,178,.6);
+ --nf-success:#b8bb26; /* В Gruvbox успех тоже зелёный */
+ --nf-warning:#fabd2f; 
+ --nf-error:#fb4934;
+ --nf-star:#fabd2f;
+ 
+ --nf-focus:2px solid #b8bb26;
+ --nf-radius-xs:0px;
+ --nf-radius:2px;
+ --nf-radius-lg:4px;
+ --nf-font-brand:var(--vmono);
+}
+:root,:root[data-theme]{
+ --jf-palette-background-paperChannel:40 40 40;
+ --jf-palette-text-primaryChannel:235 219 178;
+ --jf-palette-text-secondaryChannel:146 131 116;
+ --jf-palette-primary-mainChannel:184 187 38;
+ --jf-palette-secondary-mainChannel:184 187 38;
+ --jf-palette-error-mainChannel:251 73 52;
+ --jf-palette-warning-mainChannel:250 189 47;
+ --jf-palette-success-mainChannel:184 187 38;
+ --jf-palette-info-main:#665c54;
+ --jf-palette-info-mainChannel:102 92 84;
+ --jf-palette-primary-contrastText:#1d2021;
+ --jf-palette-secondary-contrastText:#1d2021;
+ --jf-palette-action-focus:rgba(184,187,38,.16);
+}
+body,.skinBody{background:var(--nf-bg)}
+
+/* 2. Brand */
+.MuiAppBar-root .MuiStack-root>.MuiButton-root:has(.MuiButton-startIcon>img)::before,
+.MuiAppBar-root .dashboard-appBar>.MuiButton-root:has(.MuiButton-startIcon>img)::before,
+.MuiDrawer-paper>.MuiBox-root>.MuiList-root:first-child>li:first-child>a::before{
+ content:"verloren";color:var(--nf-text);font:700 1.3rem/1.9rem var(--vmono);letter-spacing:.02em;
+ padding-left:2.4rem;background:var(--vlogo) left center/1.9rem 1.9rem no-repeat;filter:none;border-radius:3px}
+
+/* 3. Console touches */
+.sectionTitle,.sectionTitle-cards{font-family:var(--vmono)!important;font-size:.82rem!important;font-weight:500!important;letter-spacing:.16em;text-transform:uppercase;color:var(--nf-text-dim)!important}
+.MuiAppBar-root .MuiButton-root,.MuiTab-root,.mediaInfoItem,.cardText-secondary,.itemMiscInfo,.detailButton-content,.MuiChip-label{font-family:var(--vmono)!important;letter-spacing:.02em}
+.MuiTab-root{text-transform:lowercase!important}
+.MuiTabs-indicator{background:var(--nf-red)!important;height:2px!important}
+.mediaInfoItem,.MuiChip-root{border-radius:2px!important}
+
+/* 4. Play and action buttons: cut plates */
+.mainDetailButtons .detailButton.btnPlay{background:var(--nf-red);color:#1d2021;font-family:var(--vmono);letter-spacing:.06em;text-transform:uppercase;border-radius:0;
+ clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px)}
+.mainDetailButtons .detailButton.btnPlay:hover{background:var(--nf-red-hover);color:#1d2021}
+.mainDetailButtons .detailButton:not(.btnPlay){border-radius:0;clip-path:polygon(6px 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%,0 6px)}
+
+/* 5. Cards */
+.cardScalable,.cardBox:not(.visualCardBox) .cardScalable{border-radius:3px}
+.card:hover .cardScalable,.card:focus-within .cardScalable{outline:1px solid rgba(184,187,38,.8);outline-offset:-1px}
+.cardText-first{font-weight:500}
+
+/* 6. Progress */
+.itemProgressBar,.MuiLinearProgress-root{height:2px!important;border-radius:0!important}
+.MuiLinearProgress-root .MuiLinearProgress-bar{background:var(--nf-red)!important}
+
+/* 7. Menus, dialogs, inputs */
+.MuiPaper-root,.dialog,.actionSheet{border:1px solid var(--nf-line);border-radius:3px!important}
+.MuiMenuItem-root:hover,.MuiListItemButton-root:hover{background:var(--nf-fill-hover)!important}
+.MuiMenuItem-root.Mui-selected,.MuiListItemButton-root.Mui-selected{background:var(--nf-surface-3)!important;box-shadow:inset 2px 0 var(--nf-red)}
+.MuiInputBase-root,.MuiFilledInput-root,.emby-input,.emby-select{border-radius:2px!important}
+::selection{background:rgba(184,187,38,.35)}
+html{scrollbar-color:var(--nf-surface-3) transparent;scrollbar-width:thin}
+
+/* 8. Netflin's hard-coded red glows to olive */
+.tvguide .programCell.programCell-active,.tvguide .programCell.programCell-active:focus{background:linear-gradient(90deg,rgba(184,187,38,.2),rgba(184,187,38,0) 18rem),#3c3836!important}
+.tvguide .programCell.programCell-active:hover{background:linear-gradient(90deg,rgba(184,187,38,.26),rgba(184,187,38,0) 18rem),#504945!important}
+#loginPage{background:radial-gradient(70rem 40rem at 50% -10%,rgba(184,187,38,.16),transparent 70%),var(--nf-bg)}
+
+/* 9. Polish */
+.sectionTitle,.sectionTitle-cards{border-left:2px solid var(--nf-red);padding-left:.7rem}
+h2.sectionTitle.padded-left,h2.sectionTitle-cards.padded-left{border-left:0;
+ background:linear-gradient(var(--nf-red),var(--nf-red)) -.8rem 50%/2px 1em no-repeat;background-origin:content-box;background-clip:border-box}
+.cardBox{transition:transform .22s cubic-bezier(.2,.7,.2,1)}
+.cardScalable{transition:box-shadow .22s ease}
+.MuiPopover-paper,.MuiMenu-paper,.dialog,.actionSheet{backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2)}
+:focus-visible{outline:2px solid var(--nf-red);outline-offset:2px}
+.mainDetailButtons .detailButton:focus-visible{clip-path:none}
+
+/* 10. Desktop */
+@media (hover:hover) and (pointer:fine){
+ .card:hover .cardBox{transform:translateY(-3px)}
+ .card:hover .cardScalable{box-shadow:0 14px 34px rgba(0,0,0,.55),0 0 22px rgba(184,187,38,.18)}
+}
+
+/* 11. Phone */
+.layout-mobile .emby-button,.layout-mobile .paper-icon-button-light,.layout-mobile .MuiIconButton-root,
+.layout-mobile .MuiListItemButton-root,.layout-mobile .MuiMenuItem-root{min-height:44px;min-width:44px}
+.layout-mobile .cardBox,.layout-mobile .cardScalable{transition:none}
+.layout-mobile .sectionTitle,.layout-mobile .sectionTitle-cards{font-size:.76rem!important;padding-left:.55rem}
+.layout-mobile .padded-left{padding-left:max(1em,env(safe-area-inset-left))}
+.layout-mobile .padded-right{padding-right:max(1em,env(safe-area-inset-right))}
+.layout-mobile .MuiAppBar-root{padding-top:env(safe-area-inset-top)}
+.layout-mobile .dialog,.layout-mobile .actionSheet{max-height:92vh}
+@media (max-width:640px){
+ html:not(.layout-tv) .itemMiscInfo,html:not(.layout-tv) .mediaInfoItem{font-size:.8rem}
+}
+
+/* 12. TV */
+.layout-tv :focus,.layout-tv :focus-visible{outline:3px solid var(--nf-red)!important;outline-offset:3px!important}
+.layout-tv .MuiPopover-paper,.layout-tv .MuiMenu-paper,.layout-tv .dialog,.layout-tv .actionSheet{
+ backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:var(--nf-surface)!important}
+.layout-tv .cardBox{transition:transform .15s ease-out}
+.layout-tv .cardScalable{transition:none}
+.layout-tv .card:focus .cardBox,.layout-tv .card:focus-within .cardBox{transform:scale(1.05);z-index:5}
+.layout-tv .card:focus .cardScalable,.layout-tv .card:focus-within .cardScalable{box-shadow:0 0 0 3px var(--nf-red);outline:0!important}
+.layout-tv .emby-scroller,.layout-tv .scrollSlider,.layout-tv .itemsContainer{padding-top:.9em;padding-bottom:.9em}
+.layout-tv .scrollSlider{padding-left:.6em;padding-right:.6em}
+.layout-tv .sectionTitle,.layout-tv .sectionTitle-cards{font-size:1.15rem!important;letter-spacing:.1em;padding-left:.8rem}
+.layout-tv .cardText-first{font-size:1.05rem}
+.layout-tv .cardText-secondary,.layout-tv .itemMiscInfo,.layout-tv .mediaInfoItem{font-size:.95rem}
+.layout-tv .emby-button:focus,.layout-tv .MuiButton-root:focus,.layout-tv .MuiListItemButton-root:focus,.layout-tv .MuiMenuItem-root:focus{background:var(--nf-surface-3)!important;color:var(--nf-text)!important}
+.layout-tv .mainDetailButtons .detailButton{clip-path:none}
+.layout-tv ::-webkit-scrollbar{display:none}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation-duration:.01ms!important}}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ПРОЗРАЧНЫЙ APP BAR (как на скриншоте Neovim)
+   ═══════════════════════════════════════════════════════════════════════ */
+body:has(.itemDetailPage) .MuiAppBar-root,
+body:has(.itemDetailPage) .MuiAppBar-colorPrimary,
+body:has(.itemDetailPage) .MuiPaper-root.MuiAppBar-root,
+body:has(.itemDetailPage) .MuiToolbar-root {
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+body:has(.itemDetailPage) .MuiAppBar-root::before,
+body:has(.itemDetailPage) .MuiAppBar-root::after {
+  display: none !important;
+}
+/* Легкая тень для читаемости на светлом фоне */
+body:has(.itemDetailPage) .MuiAppBar-root * { text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8); }
+body:has(.itemDetailPage) .MuiAppBar-root svg { filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8)); }

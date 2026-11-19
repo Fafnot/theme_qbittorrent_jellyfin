@@ -23,7 +23,6 @@ a{color:var(--acc)}
 #mochaToolbar{border-bottom:1px solid var(--line)!important}
 #mochaToolbar img,#mochaToolbar button img{filter:grayscale(1) brightness(1.3);opacity:.7}
 #mochaToolbar a:hover img,#mochaToolbar button:hover img{opacity:1;filter:grayscale(1) brightness(1.8)}
-#mochaToolbar .divider{border-color:var(--line)!important;background:var(--line)!important}
 .tab-menu li a{background:none!important;border:0!important;color:var(--dim)!important;border-bottom:2px solid transparent!important}
 .tab-menu li:hover a{color:var(--fg)!important}
 .tab-menu li.selected a{color:var(--fg)!important;border-bottom:2px solid var(--vio)!important;background:none!important}
@@ -68,3 +67,163 @@ input[type=button]:hover,input[type=submit]:hover,button:hover{border-color:var(
 #main h1{color:var(--fg);font-weight:700;letter-spacing:.04em}
 #logo img{height:9em;border-radius:6px}
 #error_msg{color:var(--red)}
+
+/* ═════════ v3: fixes and polish, checked against the real DOM ═════════ */
+/* toolbar: no plates, hairline separators, calm icons that light up on hover */
+#mochaToolbar{display:flex;align-items:center;flex-wrap:wrap;gap:2px;padding:6px 10px!important;margin-top:0!important;min-height:44px}
+#mochaToolbar a{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:3px;cursor:pointer}
+#mochaToolbar a:hover{background:#ffffff0d}
+#mochaToolbar a:hover img{opacity:1;filter:none}
+#mochaToolbar .mochaToolButton{margin:0!important;height:20px;width:20px}
+#mochaToolbar .divider{background:transparent!important;border:0!important;padding:0!important;margin-left:8px!important;position:relative}
+#mochaToolbar .divider::before{content:"";position:absolute;left:-6px;top:6px;bottom:6px;width:1px;background:var(--line)}
+#mochaToolbar #queueingButtons{display:contents}
+#mochaToolbar #mainWindowTabs{margin:0 0 0 auto!important;float:none;order:99}
+#mochaToolbar #torrentsFilterToolbar{margin-left:12px;display:inline-flex;align-items:center;gap:8px;order:50}
+#torrentsFilterInput{background-color:var(--bg2)!important;border:1px solid var(--line)!important;min-width:240px!important;padding:5px 8px 5px 26px!important}
+#startButton:hover img{filter:drop-shadow(0 0 0 var(--grn))}
+/* table: airier rows, violet bar on the selected one */
+.dynamicTable td{padding-top:5px!important;padding-bottom:5px!important}
+.dynamicTable tbody tr.selected td:first-child,.dynamicTable tr.selected td:first-child{box-shadow:inset 3px 0 var(--vio)}
+.dynamicTable th{padding-top:7px!important;padding-bottom:7px!important;text-transform:lowercase}
+.dynamicTable td[title]{font-variant-numeric:tabular-nums}
+.progressbar_dark,.progressbar_light{font-size:11px}
+/* footer: one calm line */
+#desktopFooter{height:26px!important;line-height:26px}
+#desktopFooter table{height:26px}
+#desktopFooter td{padding:0 10px!important;border:0!important;color:var(--dim)!important}
+#desktopFooter .statusBarSeparator{width:1px!important;padding:0!important;background:var(--line)!important;height:14px;display:inline-block;vertical-align:middle}
+#desktopFooter img{height:14px!important;filter:grayscale(1) brightness(1.3);opacity:.75}
+#DlInfos{color:var(--org)!important}#UpInfos{color:var(--grn)!important}
+#freeSpaceOnDisk{color:var(--fg2)!important}
+/* header stats (filled by verloren.js) */
+#vStats{float:right;display:flex;gap:18px;align-items:center;height:26px;margin-right:14px;font-size:12px;color:var(--dim)}
+#vStats b{font-weight:500;color:var(--fg);margin-left:6px;font-size:13px}
+#vStats .d b{color:var(--org)}#vStats .u b{color:var(--grn)}
+/* keyboard cursor row */
+.dynamicTable tbody tr.vcur td{background:#ffffff0c!important}
+.dynamicTable tbody tr.vcur td:first-child{box-shadow:inset 3px 0 var(--org)}
+@media (max-width:900px){#vStats .free{display:none}}
+
+/* top-right tabs: lay them out as one flex row (no float overlap) */
+#mochaToolbar #mainWindowTabs{position:static!important;width:auto!important;margin:0 0 0 auto!important;float:none!important}
+#mainWindowTabsList{display:flex!important;gap:2px;margin:0!important;padding:0!important}
+#mainWindowTabsList li{float:none!important;display:block!important;list-style:none}
+#mainWindowTabsList li a{display:flex!important;align-items:center;gap:6px;width:auto!important;height:auto!important;padding:6px 12px!important}
+.dynamicTable td{padding-top:4px!important;padding-bottom:4px!important}
+/* details panel: dim labels, bright values; pieces bar recolored from stock blue/green to violet/teal */
+.generalLabel{color:var(--dim)!important;font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+#propertiesPanel td:not(.generalLabel){color:var(--fg)}
+#progress{filter:hue-rotate(52deg) saturate(.75) brightness(1.05)}
+#propertiesTabs .tab-menu li.selected a,#propertiesTabs li.selected a{color:var(--fg)!important}
+
+/* ═════════════════ PHONE (≤760px): drawer, cards, action bar, details sheet ═════════════════ */
+@media (max-width:760px){
+ html,body{overflow:hidden;height:100%}
+ #desktop{width:100%!important;min-width:0!important;height:100%!important;display:flex;flex-direction:column;padding-bottom:calc(26px + env(safe-area-inset-bottom))}
+ #desktopHeader{flex:none;padding-top:env(safe-area-inset-top)}
+ #pageWrapper{flex:1 1 auto;min-height:0;height:auto!important;position:relative!important;overflow:hidden}
+ .handle,#filtersColumn_handle,#mainColumn_handle{display:none!important}
+ /* top bar: ☰ icon menus */
+ #desktopNavbar{display:flex!important;align-items:center;height:42px;padding:0 4px}
+ #desktopNavbar::before{order:1;float:none;font-size:0;width:26px;height:26px;margin:0 6px 0 2px;padding:0;background-size:24px 24px}
+ #desktopNavbar>ul{order:2;display:flex;margin:0 0 0 auto}
+ #desktopNavbar>ul>li>a{padding:10px 8px!important;font-size:13px}
+ #vFilterBtn{order:0}
+ #vStats{display:none}
+ /* toolbar: tabs row on top, then quick buttons + filter */
+ #mochaToolbar{flex-wrap:wrap!important;padding:4px 8px 6px!important;gap:4px 4px!important}
+ #mochaToolbar #mainWindowTabs{order:-1;flex:1 1 100%;margin:0!important}
+ #mainWindowTabsList{width:100%}
+ #mainWindowTabsList li{flex:1 1 0}
+ #mainWindowTabsList li a{justify-content:center;padding:8px 2px!important;font-size:0;gap:5px}
+ #mainWindowTabsList li.selected a{font-size:11px}
+ #mainWindowTabsList li a img{width:18px;height:18px}
+ #mochaToolbar #startButton,#mochaToolbar #stopButton,#mochaToolbar #deleteButton,#mochaToolbar #preferencesButton,#mochaToolbar #queueingButtons{display:none!important}
+ #mochaToolbar .divider::before{display:none}
+ #mochaToolbar a{width:38px;height:38px}
+ #mochaToolbar #torrentsFilterToolbar{order:5;flex:1 1 0;min-width:0;margin:0!important}
+ #torrentsFilterToolbar>*:not(#torrentsFilterInput){display:none!important}
+ #torrentsFilterInput{width:100%!important;min-width:0!important;height:38px;font-size:14px;box-sizing:border-box}
+ #vSort{order:6;display:flex;gap:4px;align-items:center}
+ #vSort select{height:38px;width:78px;background:var(--bg2)!important;color:var(--fg)!important;border:1px solid var(--line)!important;font-size:12px}
+ #vSort button{height:38px;width:38px;padding:0}
+ /* sidebar becomes a drawer */
+ #filtersColumn{position:fixed!important;top:0!important;bottom:0!important;left:0!important;width:84vw!important;max-width:340px;height:auto!important;z-index:80;overflow-y:auto;transform:translateX(-104%);transition:transform .22s ease;padding-top:env(safe-area-inset-top);box-shadow:none}
+ html.v-drawer #filtersColumn{transform:none;box-shadow:0 0 40px #000c}
+ #vShade{position:fixed;inset:0;background:#0009;z-index:70;display:none}
+ html.v-drawer #vShade{display:block}
+ #filtersColumn ul.filterList li{padding:3px 0}
+ #filtersColumn ul.filterList .link{display:flex;align-items:center;gap:10px;padding:10px 12px}
+ #filtersColumn ul.filterList .link img{flex:none;width:18px;height:18px;margin:0!important}
+ .filterTitle{padding:14px 10px 6px!important}
+ /* main list full width */
+ #mainColumn{position:absolute!important;left:0!important;top:0!important;width:100%!important;height:100%!important;margin:0!important;float:none!important}
+ #transferList,#transferList_content{width:100%!important;height:100%!important}
+ #torrentsTableDiv{height:100%!important;overflow-y:auto!important;overflow-x:hidden!important;padding-bottom:84px}
+ #torrentsTableFixedHeaderDiv,.dynamicTableFixedHeaderDiv,#torrentsTableDiv thead{display:none!important}
+ #torrentsTableDiv table,#torrentsTableDiv tbody{display:block;width:100%!important;min-width:0!important}
+ /* torrent cards */
+ #torrentsTableDiv tbody tr{display:flex;flex-wrap:wrap;align-items:center;gap:3px 14px;padding:11px 14px 11px 16px;border-bottom:1px solid var(--line);position:relative}
+ #torrentsTableDiv tbody tr.invisible{display:none}
+ #torrentsTableDiv td{display:none!important;padding:0!important;border:0!important;width:auto!important;white-space:nowrap;font-size:12px;color:var(--dim);box-shadow:none!important}
+ #torrentsTableDiv td.c-name,#torrentsTableDiv td.c-progress,#torrentsTableDiv td.c-status,#torrentsTableDiv td.c-dlspeed,#torrentsTableDiv td.c-upspeed,#torrentsTableDiv td.c-eta,#torrentsTableDiv td.c-size,#torrentsTableDiv td.c-ratio{display:block!important}
+ #torrentsTableDiv td.invisible{display:none!important}
+ #torrentsTableDiv td[data-z]{display:none!important}
+ #torrentsTableDiv td.c-name{order:1;flex:1 1 100%;white-space:normal;color:var(--fg);font-size:14px;line-height:1.35;display:-webkit-box!important;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:break-word}
+ #torrentsTableDiv td.c-progress{order:2;flex:1 1 100%;position:relative;height:16px;font-size:0}
+ #torrentsTableDiv td.c-progress .progressbar_wrapper{display:none!important}
+ #torrentsTableDiv td.c-progress::before{content:"";position:absolute;left:0;right:56px;top:7px;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--acc) calc(var(--p,0)*1%),var(--line) 0)}
+ #torrentsTableDiv td.c-progress::after{content:attr(data-p);position:absolute;right:0;top:0;font-size:11px;line-height:16px;color:var(--fg2)}
+ #torrentsTableDiv td.c-status{order:3;color:var(--fg2)}
+ #torrentsTableDiv td.c-dlspeed{order:4;color:var(--org)}#torrentsTableDiv td.c-dlspeed::before{content:"\2193 "}
+ #torrentsTableDiv td.c-upspeed{order:5;color:var(--grn)}#torrentsTableDiv td.c-upspeed::before{content:"\2191 "}
+ #torrentsTableDiv td.c-eta{order:6}#torrentsTableDiv td.c-eta::before{content:"eta "}
+ #torrentsTableDiv td.c-size{order:7}
+ #torrentsTableDiv td.c-ratio{order:8}#torrentsTableDiv td.c-ratio::before{content:"ratio "}
+ #torrentsTableDiv tbody tr.selected{background:#7aa2f71f!important}
+ #torrentsTableDiv tbody tr.selected::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--vio)}
+ .dynamicTable tbody tr.vcur td,#torrentsTableDiv tbody tr.selected td{background:transparent!important;box-shadow:none!important}
+ #vFilterBtn{background:none!important;border:0!important}
+ .contextMenu li a{padding:11px 14px!important;font-size:14px}
+ /* bottom action bar for selected torrents */
+ #vBar{position:fixed;left:0;right:0;bottom:calc(26px + env(safe-area-inset-bottom));height:56px;display:none;align-items:center;justify-content:space-around;background:var(--bg3);border-top:1px solid var(--line);z-index:60}
+ html.v-sel #vBar{display:flex}
+ #vBar button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:48px;height:50px;background:none!important;border:0!important;color:var(--fg2)!important;font-size:10px;letter-spacing:.04em;text-transform:lowercase}
+ #vBar button img{width:20px;height:20px;filter:grayscale(1) brightness(1.4);opacity:.85}
+ #vBar button.dang img{filter:none}
+ #vBar .more{font-size:22px;line-height:20px;height:20px}
+ #vBar #vCount{font-size:12px;color:var(--vio);min-width:28px;text-align:center}
+ /* details = bottom sheet */
+ #propertiesTabs{display:flex!important;overflow-x:auto;white-space:nowrap}
+ #propertiesTabs li{flex:0 0 auto;float:none!important}
+ #propertiesPanel_wrapper{position:fixed!important;left:0!important;right:0!important;top:auto!important;width:100%!important;bottom:calc(82px + env(safe-area-inset-bottom));height:58vh!important;z-index:55;display:flex!important;flex-direction:column;overflow:hidden;background:var(--bg);border-top:2px solid var(--vio);box-shadow:0 -14px 40px #000b}
+ html:not(.v-details) #propertiesPanel_wrapper{display:none!important}
+ #propertiesPanel_header{order:-1;flex:none;position:relative!important;height:auto!important;width:100%!important}
+ #propertiesPanel_headerContent,#propertiesPanel_headerContent .toolbarTabs{height:auto!important;position:static!important}
+ #propertiesPanel{position:static!important;flex:1 1 auto;min-height:0;height:auto!important;width:100%!important;overflow:auto!important;display:block!important}
+ #propertiesPanel_pad{height:auto!important}
+ #propertiesPanel_handle{display:none!important}
+ #propertiesPanel table{width:100%!important}
+ #propertiesPanel #propGeneral table,#propGeneral table{display:block}
+ #propGeneral tbody,#propGeneral tr{display:block}
+ #propGeneral tr{display:flex;flex-wrap:wrap;gap:0 4px;padding:2px 10px}
+ #propGeneral td{display:block;flex:0 0 57%;box-sizing:border-box;padding:3px 0!important;text-align:left!important;white-space:normal;word-break:break-word}
+ #propGeneral td.generalLabel{flex:0 0 39%;margin:0;padding-right:8px!important}
+ #progress{max-width:100%}
+ /* footer: speeds only */
+ #desktopFooterWrapper{position:fixed!important;left:0;right:0;bottom:0;height:calc(26px + env(safe-area-inset-bottom));z-index:90;padding-bottom:env(safe-area-inset-bottom)}
+ #desktopFooter table{position:static!important;margin:0 8px 0 auto;width:auto}
+ #desktopFooter td:has(#connectionStatus),#freeSpaceOnDisk,#externalIPs,#DHTNodes{display:none!important}
+ #desktopFooter .statusBarSeparator{display:none!important}
+ #desktopFooter td{padding:0 6px!important;font-size:10.5px}
+ #desktopFooter img,#desktopFooter td:has(#alternativeSpeedLimits){display:none!important}
+ /* dialogs and menus fit the screen */
+ .mocha{left:0!important;right:0!important;width:100vw!important;max-width:100vw!important;min-width:0!important}
+ .mochaContent,.mochaContentWrapper,.mochaContentBorder{max-width:100vw!important}
+ .contextMenu{max-height:62vh;overflow-y:auto;z-index:200}
+ /* other tabs scroll instead of squeezing */
+ #searchTabColumn,#rssTabColumn,#logTabColumn{overflow:auto}
+}
+@media (min-width:761px){#vBar,#vShade,#vFilterBtn,#vSort{display:none!important}}
+#vFilterBtn{background:none;border:0;color:var(--fg);font-size:22px;width:40px;height:40px;cursor:pointer}

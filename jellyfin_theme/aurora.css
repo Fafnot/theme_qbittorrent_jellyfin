@@ -1,0 +1,284 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   aurora for Jellyfin = Netflin layout (ahza-code, GPL-2.0) + polar glow look
+   Paste this whole file into: Dashboard → General → Custom CSS code
+   Needs Jellyfin 12.x, User Settings → Display → Display Mode: Auto (or TV on a TV)
+   Tip: to freeze the look, replace @latest below with a fixed Netflin version tag
+   Palette: deep teal-night base + soft mint accent. Works on phone/desktop/TV.
+   ═══════════════════════════════════════════════════════════════════════ */
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap");
+@import url("https://cdn.jsdelivr.net/gh/ahza-code/Netflin@latest/Theme/Netflin.min.css");
+
+/* 1. Palette: deep teal, soft mint, one warm star */
+:root,:root[data-theme]{
+ --aserif:"Fraunces",Georgia,"Times New Roman",serif;
+ --asans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+ --amono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Consolas,monospace;
+
+ /* accent — мягкая мята */
+ --a-accent:#8fd8c5;
+ --a-accent-hover:#a9e6d5;
+ --a-accent-soft:rgba(143,216,197,.14);
+
+ /* фоны */
+ --a-bg:#0b1416;
+ --a-bg-rgb:11 20 22;
+ --a-surface:#111d20;
+ --a-surface-2:#16262a;
+ --a-surface-3:#1d3236;
+ --a-surface-4:#294448;
+
+ /* линии и текст */
+ --a-line:rgba(190,225,220,.09);
+ --a-outline:rgba(190,225,220,.45);
+ --a-text:#e3f1ee;
+ --a-text-2:#b9cfca;
+ --a-text-dim:#7d938f;
+ --a-text-mute:#546965;
+
+ /* заливки */
+ --a-fill-btn:rgba(29,50,54,.85);
+ --a-fill-btn-hover:rgba(41,68,72,.9);
+ --a-fill-disc:rgba(17,29,32,.7);
+ --a-fill-disc-hover:rgba(29,50,54,.9);
+ --a-fill-hover:rgba(190,225,220,.07);
+ --a-fill-panel:rgba(190,225,220,.035);
+ --a-fill-tag:var(--a-accent-soft);
+ --a-fill-white-hover:rgba(227,241,238,.78);
+ --a-fill-menu:rgba(17,29,32,.97);
+
+ /* служебные */
+ --a-track:rgba(84,105,101,.55);
+ --a-scrim:rgba(5,10,11,.75);
+ --a-field-bg:rgba(11,20,22,.82);
+ --a-field-line:rgba(84,105,101,.8);
+ --a-field-line-hover:rgba(190,225,220,.6);
+ --a-success:#a6d98f;
+ --a-warning:#e8b87a;
+ --a-error:#e88a95;
+ --a-star:#e8c68a;
+
+ /* форма */
+ --a-radius-xs:2px;
+ --a-radius:4px;
+ --a-radius-lg:8px;
+
+ /* мапим старые переменные Netflin на наши */
+ --nf-red:var(--a-accent);
+ --nf-red-hover:var(--a-accent-hover);
+ --nf-bg:var(--a-bg);
+ --nf-bg-rgb:var(--a-bg-rgb);
+ --nf-surface:var(--a-surface);
+ --nf-surface-2:var(--a-surface-2);
+ --nf-surface-3:var(--a-surface-3);
+ --nf-surface-4:var(--a-surface-4);
+ --nf-line:var(--a-line);
+ --nf-outline:var(--a-outline);
+ --nf-text:var(--a-text);
+ --nf-text-2:var(--a-text-2);
+ --nf-text-dim:var(--a-text-dim);
+ --nf-text-mute:var(--a-text-mute);
+ --nf-fill-btn:var(--a-fill-btn);
+ --nf-fill-btn-hover:var(--a-fill-btn-hover);
+ --nf-fill-hover:var(--a-fill-hover);
+ --nf-fill-panel:var(--a-fill-panel);
+ --nf-fill-tag:var(--a-fill-tag);
+ --nf-fill-menu:var(--a-fill-menu);
+ --nf-fill-disc:var(--a-fill-disc);
+ --nf-fill-disc-hover:var(--a-fill-disc-hover);
+ --nf-fill-white-hover:var(--a-fill-white-hover);
+ --nf-track:var(--a-track);
+ --nf-scrim:var(--a-scrim);
+ --nf-field-bg:var(--a-field-bg);
+ --nf-field-line:var(--a-field-line);
+ --nf-field-line-hover:var(--a-field-line-hover);
+ --nf-success:var(--a-success);
+ --nf-warning:var(--a-warning);
+ --nf-error:var(--a-error);
+ --nf-star:var(--a-star);
+ --nf-focus:2px solid var(--a-accent);
+ --nf-radius-xs:var(--a-radius-xs);
+ --nf-radius:var(--a-radius);
+ --nf-radius-lg:var(--a-radius-lg);
+ --nf-font-brand:var(--aserif);
+}
+
+/* каналы MUI под нашу палитру */
+:root,:root[data-theme]{
+ --jf-palette-background-paperChannel:17 29 32;
+ --jf-palette-text-primaryChannel:227 241 238;
+ --jf-palette-text-secondaryChannel:125 147 143;
+ --jf-palette-primary-mainChannel:143 216 197;
+ --jf-palette-secondary-mainChannel:143 216 197;
+ --jf-palette-error-mainChannel:232 138 149;
+ --jf-palette-warning-mainChannel:232 184 122;
+ --jf-palette-success-mainChannel:166 217 143;
+ --jf-palette-info-main:#546965;
+ --jf-palette-info-mainChannel:84 105 101;
+ --jf-palette-primary-contrastText:#0b1416;
+ --jf-palette-secondary-contrastText:#0b1416;
+ --jf-palette-action-focus:rgba(143,216,197,.16);
+}
+body,.skinBody{background:var(--a-bg);color:var(--a-text)}
+
+/* 2. Brand: "aurora" серифом, точка-сияние вместо иконки.
+      Три отдельных правила — старые браузеры без :has() сломают только первые два. */
+.MuiAppBar-root .MuiStack-root>.MuiButton-root:has(.MuiButton-startIcon>img)::before{
+ content:"aurora";color:var(--a-text);font:400 1.55rem/1.9rem var(--aserif);letter-spacing:.01em;
+ padding-left:2.5rem;
+ background:radial-gradient(circle at 50% 55%,var(--a-accent) 0 40%,transparent 46%) left center/1.9rem 1.9rem no-repeat;
+ border-radius:3px}
+.MuiAppBar-root .dashboard-appBar>.MuiButton-root:has(.MuiButton-startIcon>img)::before{
+ content:"aurora";color:var(--a-text);font:400 1.55rem/1.9rem var(--aserif);letter-spacing:.01em;
+ padding-left:2.5rem;
+ background:radial-gradient(circle at 50% 55%,var(--a-accent) 0 40%,transparent 46%) left center/1.9rem 1.9rem no-repeat;
+ border-radius:3px}
+.MuiDrawer-paper>.MuiBox-root>.MuiList-root:first-child>li:first-child>a::before{
+ content:"aurora";color:var(--a-text);font:400 1.55rem/1.9rem var(--aserif);letter-spacing:.01em;
+ padding-left:2.5rem;
+ background:radial-gradient(circle at 50% 55%,var(--a-accent) 0 40%,transparent 46%) left center/1.9rem 1.9rem no-repeat;
+ border-radius:3px}
+
+/* 3. Типографика: серифные заголовки рядов, спокойный sans в интерфейсе */
+.sectionTitle,.sectionTitle-cards{
+ font-family:var(--aserif)!important;
+ font-size:1.35rem!important;
+ font-weight:500!important;
+ letter-spacing:-.005em;
+ text-transform:none;
+ color:var(--a-text)!important}
+.MuiAppBar-root .MuiButton-root,.MuiTab-root{
+ font-family:var(--asans)!important;letter-spacing:.01em;text-transform:none!important}
+.MuiTab-root{color:var(--a-text-dim)}
+.MuiTab-root.Mui-selected{color:var(--a-text)!important}
+.MuiTabs-indicator{background:var(--a-accent)!important;height:2px!important;border-radius:2px}
+.mediaInfoItem,.itemMiscInfo,.cardText-secondary,.MuiChip-label{
+ font-family:var(--amono)!important;font-size:.76rem;letter-spacing:.02em;color:var(--a-text-dim)}
+.mediaInfoItem,.MuiChip-root{border-radius:2px!important}
+.cardText-first{font-family:var(--asans);font-weight:500;color:var(--a-text)}
+
+/* 4. Кнопки: мягкая мятная заливка для Play, тонкие контуры для остальных */
+.mainDetailButtons .detailButton{
+ border-radius:var(--a-radius);
+ border:1px solid var(--a-line);
+ background:var(--a-fill-btn);
+ color:var(--a-text);
+ font-family:var(--asans);
+ font-size:.86rem;font-weight:500;letter-spacing:.015em;
+ transition:background .18s ease,border-color .18s ease,transform .18s ease}
+.mainDetailButtons .detailButton:hover{
+ background:var(--a-fill-btn-hover);
+ border-color:var(--a-outline);
+ transform:translateY(-1px)}
+.mainDetailButtons .detailButton.btnPlay{
+ background:var(--a-accent);color:#0b1416;border-color:var(--a-accent);font-weight:600}
+.mainDetailButtons .detailButton.btnPlay:hover{
+ background:var(--a-accent-hover);color:#0b1416}
+
+/* 5. Карточки: скругления, мягкий подъём, тонкая мята на hover */
+.cardScalable,.cardImageContainer,.cardBox:not(.visualCardBox) .cardScalable{
+ border-radius:var(--a-radius-lg)}
+.cardBox{border-radius:var(--a-radius-lg);overflow:hidden;
+ transition:transform .22s cubic-bezier(.2,.7,.2,1),box-shadow .22s ease}
+.cardScalable{transition:box-shadow .22s ease}
+.card:hover .cardScalable,.card:focus-within .cardScalable{
+ outline:1px solid rgba(143,216,197,.75);outline-offset:-1px}
+
+/* 6. Прогресс: тонкая мята, pill-форма */
+.itemProgressBar,.MuiLinearProgress-root{
+ height:3px!important;border-radius:999px!important;background:var(--a-track)!important;overflow:hidden}
+.itemProgressBar>div,.MuiLinearProgress-root .MuiLinearProgress-bar{
+ background:linear-gradient(90deg,var(--a-accent),var(--a-accent-hover))!important;
+ border-radius:999px!important}
+
+/* 7. Меню, диалоги, поля: плотная поверхность, тонкие границы */
+.MuiPopover-paper,.MuiMenu-paper,.dialog,.actionSheet,.MuiPaper-root{
+ background:var(--a-surface)!important;
+ border:1px solid var(--a-line);
+ border-radius:var(--a-radius-lg)!important;
+ box-shadow:0 22px 60px rgba(0,0,0,.6)}
+.MuiMenuItem-root,.MuiListItemButton-root{border-radius:0!important}
+.MuiMenuItem-root:hover,.MuiListItemButton-root:hover{background:var(--a-fill-hover)!important}
+.MuiMenuItem-root.Mui-selected,.MuiListItemButton-root.Mui-selected{
+ background:var(--a-surface-3)!important;box-shadow:inset 3px 0 var(--a-accent)}
+.MuiInputBase-root,.MuiFilledInput-root,.emby-input,.emby-select{
+ border-radius:var(--a-radius)!important;border:1px solid var(--a-field-line);
+ transition:border-color .18s ease}
+.MuiInputBase-root:hover,.emby-input:hover{border-color:var(--a-field-line-hover)}
+::selection{background:rgba(143,216,197,.35)}
+html{scrollbar-color:var(--a-surface-3) transparent;scrollbar-width:thin}
+:focus-visible{outline:2px solid var(--a-accent);outline-offset:2px}
+
+/* 8. TV-гид и логин: северное сияние в углу */
+.tvguide .programCell.programCell-active,.tvguide .programCell.programCell-active:focus{
+ background:linear-gradient(90deg,rgba(143,216,197,.2),rgba(143,216,197,0) 18rem),var(--a-surface-3)!important}
+.tvguide .programCell.programCell-active:hover{
+ background:linear-gradient(90deg,rgba(143,216,197,.26),rgba(143,216,197,0) 18rem),var(--a-surface-4)!important}
+#loginPage{
+ background:
+  radial-gradient(50rem 30rem at 15% -10%,rgba(143,216,197,.14),transparent 70%),
+  radial-gradient(60rem 40rem at 85% 110%,rgba(143,216,197,.08),transparent 70%),
+  var(--a-bg)}
+
+/* 9. Desktop (только мышь): подъём карточки + мягкое свечение */
+@media (hover:hover) and (pointer:fine){
+ .card:hover .cardBox{transform:translateY(-3px)}
+ .card:hover .cardScalable{
+  box-shadow:0 14px 34px rgba(0,0,0,.5),0 0 22px rgba(143,216,197,.16)}
+}
+
+/* 10. Телефон / тач: всё скоупим на .layout-mobile, чтобы ТВ не подхватил */
+.layout-mobile .emby-button,.layout-mobile .paper-icon-button-light,
+.layout-mobile .MuiIconButton-root,.layout-mobile .MuiListItemButton-root,
+.layout-mobile .MuiMenuItem-root{min-height:44px;min-width:44px}
+.layout-mobile .cardBox,.layout-mobile .cardScalable{transition:none}
+.layout-mobile .sectionTitle,.layout-mobile .sectionTitle-cards{font-size:1.2rem!important}
+.layout-mobile .padded-left{padding-left:max(1em,env(safe-area-inset-left))}
+.layout-mobile .padded-right{padding-right:max(1em,env(safe-area-inset-right))}
+.layout-mobile .MuiAppBar-root{padding-top:env(safe-area-inset-top)}
+.layout-mobile .dialog,.layout-mobile .actionSheet{max-height:92vh}
+@media (max-width:640px){
+ html:not(.layout-tv) .itemMiscInfo,html:not(.layout-tv) .mediaInfoItem{font-size:.78rem}
+}
+
+/* 11. TV (пульт): толстое кольцо фокуса, scale без тяжёлых теней, overscan-safe */
+.layout-tv :focus,.layout-tv :focus-visible{
+ outline:3px solid var(--a-accent)!important;outline-offset:3px!important}
+
+/* никакого blur и тяжёлых теней — слабые GPU на ТВ */
+.layout-tv .MuiPopover-paper,.layout-tv .MuiMenu-paper,
+.layout-tv .dialog,.layout-tv .actionSheet{
+ backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+ background:var(--a-surface)!important;box-shadow:none!important}
+
+/* дешёвая анимация фокуса — только transform, кольцо вместо большой тени */
+.layout-tv .cardBox{transition:transform .15s ease-out}
+.layout-tv .cardScalable{transition:none}
+.layout-tv .card:focus .cardBox,.layout-tv .card:focus-within .cardBox{
+ transform:scale(1.05);z-index:5}
+.layout-tv .card:focus .cardScalable,.layout-tv .card:focus-within .cardScalable{
+ box-shadow:0 0 0 3px var(--a-accent);outline:0!important}
+
+/* место, чтобы увеличенная карточка не обрезалась рядом */
+.layout-tv .emby-scroller,.layout-tv .scrollSlider,.layout-tv .itemsContainer{
+ padding-top:.9em;padding-bottom:.9em}
+.layout-tv .scrollSlider{padding-left:.6em;padding-right:.6em}
+
+/* читаемость с дивана */
+.layout-tv .sectionTitle,.layout-tv .sectionTitle-cards{
+ font-size:1.7rem!important;letter-spacing:0;padding-left:.8rem}
+.layout-tv .cardText-first{font-size:1.05rem}
+.layout-tv .cardText-secondary,.layout-tv .itemMiscInfo,.layout-tv .mediaInfoItem{
+ font-size:.95rem}
+
+.layout-tv .emby-button:focus,.layout-tv .MuiButton-root:focus,
+.layout-tv .MuiListItemButton-root:focus,.layout-tv .MuiMenuItem-root:focus{
+ background:var(--a-surface-3)!important;color:var(--a-text)!important}
+
+/* NOTE: не трогаем .padded-left/.padded-right на TV —
+   на странице элемента они задвигают заголовок под постер */
+.layout-tv ::-webkit-scrollbar{display:none}
+
+/* 12. Уважаем «уменьшенную анимацию» */
+@media (prefers-reduced-motion:reduce){
+ *{transition:none!important;animation-duration:.01ms!important}
+}
